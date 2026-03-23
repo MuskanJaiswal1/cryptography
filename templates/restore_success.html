@@ -4,64 +4,67 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="../static/CRITSECURRA.svg" type="image" />
+    <!-- <link rel="icon" href="../static/favicon.ico" type="image/x-icon" /> -->
     <link
       rel="stylesheet"
       type="text/css"
       href="../static/styles/tailwind.min.css"
     />
+    <link rel="stylesheet" type="text/css" href="../static/styles/theme.css" />
     <title>Hurray!</title>
+    <style>
+      .page-shell {
+        width: min(920px, 94vw);
+      }
+      .dashboard-card {
+        background: rgba(30, 30, 50, 0.8);
+        border: 1px solid rgba(100, 100, 150, 0.3);
+        border-radius: 16px;
+        padding: 28px;
+        backdrop-filter: blur(6px);
+      }
+      .btn {
+        border-radius: 10px;
+        padding: 10px 16px;
+        border: 1px solid rgba(130, 140, 180, 0.5);
+        display: inline-block;
+        transition: transform 0.2s ease;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+      .btn-file {
+        border-color: #10b981;
+        color: #6ee7b7;
+      }
+      .btn-file:hover {
+        color: #052e16;
+        background: #34d399;
+      }
+      .btn-home {
+        color: #d1d5db;
+      }
+      .btn-home:hover {
+        background: rgba(55, 65, 81, 0.8);
+      }
+    </style>
   </head>
-  <body
-    class="flex tracking-wider text-center justify-center overflow-x-hidden items-center h-screen"
-    style="background-color: black; color: #f2ebe9"
-  >
-    <video
-      src="../static/CRITSECURRA.mp4"
-      class="absolute bottom-0 md:-bottom-5 xl:bottom-0 w-64 md:w-150 xl:-right-5"
-      autoplay
-      muted
-      loop
-    ></video>
-    <div
-      class="rounded-2xl w-2/3 mx-20 hover:shadow-2xl transform duration-300"
-      style="background-color: transparent"
-    >
-      <div class="m-10 sm:mx-20 lg:mx-40">
+  <body class="app-page px-4 py-8 md:py-12">
+    {% include '_navbar.html' %}
+    <div class="page-shell mx-auto">
+      <div class="dashboard-card text-center">
         <h1 class="text-3xl md:text-4xl lg:text-5xl mt-10 font-bold">
           FILE<span class="text-blue-600">!</span>SECURE
         </h1>
         <h2 class="lg:text-lg">
-          Secure File Storage Using <em>`Hybr!d Cryptography` </em>
+          Secure File Storage Using <span class="text-green-300">Hybrid Cryptography</span>
         </h2>
-        <br /><br />
-        <h2 class="sm:mt-12 text-center font-semibold text-3xl">`SUCCESS`!</h2>
-        <h3 class="mb-5">You file has been decrypted and restored.<br /></h3>
-        <table class="w-full sm:mb-16">
-          <tr class="flex justify-center flex-wrap sm:flex-no-wrap">
-            <td>
-              <a href="/return-file"
-                ><button
-                  class="py-2 px-4 border transform duration-200 hover:text-black hover:bg-gray-100 hover:-translate-y-1"
-                >
-                  Download File
-                </button></a
-              >
-            </td>
-            <td>
-              <a href="/home"
-                ><button
-                  class="py-2 px-4 border transform duration-200 text-black hover:text-white hover:bg-transparent bg-gray-100 hover:-translate-y-1 sm:ml-10"
-                >
-                  Back to Home
-                </button></a
-              >
-            </td>
-          </tr>
-        </table>
-        <br />
-        <div class="flex-col mx-auto mt-5 text-center">
-         
+        <h2 class="mt-10 text-center font-semibold text-3xl text-green-400">SUCCESS</h2>
+        <h3 class="mb-6 mt-2 text-gray-200">Your file has been decrypted and restored.</h3>
+
+        <div class="flex justify-center flex-wrap gap-3 mt-6 mb-2">
+          <a href="/return-file" class="btn btn-file">Download File</a>
+          <a href="/home" class="btn btn-home">Back to Home</a>
         </div>
       </div>
     </div>

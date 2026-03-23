@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../static/styles/tailwind.min.css" />
+    <link rel="stylesheet" type="text/css" href="../static/styles/theme.css" />
+    <title>Encryption Details - FILE!SECURE</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0b1020 0%, #111827 100%);
+            color: #e5e7eb;
+            min-height: 100vh;
+        }
+        .panel {
+            background: rgba(17, 24, 39, 0.8);
+            border: 1px solid rgba(75, 85, 99, 0.5);
+            border-radius: 12px;
+            padding: 18px;
+        }
+        .stat {
+            background: rgba(31, 41, 55, 0.8);
+            border: 1px solid rgba(75, 85, 99, 0.5);
+            border-radius: 10px;
+            padding: 14px;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(75, 85, 99, 0.45);
+            text-align: left;
+            font-size: 0.9rem;
+        }
+        th {
+            color: #93c5fd;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        .algo {
+            font-weight: 600;
+            color: #fcd34d;
+        }
+    </style>
+</head>
+<body class="app-page p-6">
+    {% include '_navbar.html' %}
+    <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-6">
+            <h1 class="text-3xl font-bold">Encryption Details</h1>
+            <p class="text-gray-400 mt-2">Chunk encryption map and per-file analysis</p>
+        </div>
+
+        {% if message %}
+        <div class="panel text-center text-yellow-300">
+            {{ message }}
+        </div>
+        {% elif record %}
+        <div class="panel mb-5">
+            <div class="grid md:grid-cols-2 gap-4 text-sm">
+                <div><span class="text-gray-400">Upload ID:</span> {{ record.upload_id }}</div>
+                <div><span class="text-gray-400">Timestamp:</span> {{ record.timestamp[:19] }}</div>
+                <div><span class="text-gray-400">File Name:</span> {{ record.file_name }}</div>
+                <div><span class="text-gray-400">Strategy:</span> {{ record.strategy }}</div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6">
+            <div class="stat">
+                <div class="text-2xl font-bold text-blue-400">{{ record.total_chunks }}</div>
+                <div class="text-xs text-gray-400">Chunks</div>
+            </div>
+            <div class="stat">
+                <div class="text-2xl font-bold text-green-400">{{ analysis.total_size_kb }} KB</div>
+                <div class="text-xs text-gray-400">Total Size</div>
+            </div>
+            <div class="stat">
+                <div class="text-2xl font-bold text-yellow-300">{{ analysis.avg_size_kb }} KB</div>
+                <div class="text-xs text-gray-400">Average Chunk</div>
+            </div>
+            <div class="stat">
+                <div class="text-2xl font-bold text-red-400">{{ analysis.max_size_kb }} KB</div>
+                <div class="text-xs text-gray-400">Largest Chunk</div>
+            </div>
+            <div class="stat">
+                <div class="text-2xl font-bold text-purple-300">{{ analysis.algorithm_count }}</div>
+                <div class="text-xs text-gray-400">Algorithms Used</div>
+            </div>
+        </div>
+
+        <div class="panel mb-5">
+            <h3 class="text-lg font-semibold mb-3">Algorithms in this file</h3>
+            <p class="text-sm text-gray-300">{{ analysis.algorithms_used|join(', ') }}</p>
+        </div>
+
+        <div class="panel overflow-x-auto">
+            <h3 class="text-lg font-semibold mb-4">Chunk Encryption Table</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Chunk ID</th>
+                        <th>Chunk Name</th>
+                        <th>Size (KB)</th>
+                        <th>Algorithm</th>
+                        <th>Key Type</th>
+                        <th>Nonce Used</th>
+                        <th>Order</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for chunk in record.chunks %}
+                    <tr>
+                        <td>{{ chunk.chunk_id }}</td>
+                        <td class="text-xs text-gray-400">{{ chunk.chunk_name }}</td>
+                        <td>{{ chunk.size_kb }}</td>
+                        <td class="algo">{{ chunk.algorithm }}</td>
+                        <td>{{ chunk.key_type }}</td>
+                        <td>{{ chunk.nonce_used }}</td>
+                        <td>{{ chunk.order }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

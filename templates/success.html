@@ -4,70 +4,208 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="../static/" type="image" />
+    <!-- <link rel="icon" href="../static/favicon.ico" type="image/x-icon" /> -->
     <link
       rel="stylesheet"
       type="text/css"
       href="../static/styles/tailwind.min.css"
     />
+    <link rel="stylesheet" type="text/css" href="../static/styles/theme.css" />
     <title>Success!</title>
+    <style>
+      .page-shell {
+        width: min(1080px, 95vw);
+      }
+      .dashboard-card {
+        background: rgba(30, 30, 50, 0.8);
+        border: 1px solid rgba(100, 100, 150, 0.3);
+        border-radius: 16px;
+        padding: 24px;
+        backdrop-filter: blur(6px);
+      }
+      .info-box {
+        border-radius: 10px;
+        padding: 14px 16px;
+        margin: 12px 0;
+        text-align: left;
+      }
+      .info-box h4 {
+        font-size: 0.95rem;
+        margin-bottom: 8px;
+      }
+      .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px 12px;
+        font-size: 0.85rem;
+      }
+      .tag {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.7rem;
+        font-weight: 600;
+      }
+      .tag-strong { background-color: #ef4444; }
+      .tag-balanced { background-color: #f59e0b; }
+      .tag-fast { background-color: #10b981; }
+      .tag-safe { background-color: #10b981; }
+      .tag-low { background-color: #3b82f6; }
+      .tag-medium { background-color: #f59e0b; }
+      .tag-high { background-color: #ef4444; }
+      .tag-override { background-color: #8b5cf6; }
+      .btn {
+        border-radius: 10px;
+        padding: 10px 14px;
+        border: 1px solid rgba(130, 140, 180, 0.5);
+        display: inline-block;
+        transition: transform 0.2s ease;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+      .btn-key {
+        border-color: #10b981;
+        color: #6ee7b7;
+      }
+      .btn-key:hover {
+        color: #052e16;
+        background: #34d399;
+      }
+      .btn-home {
+        color: #d1d5db;
+      }
+      .btn-home:hover {
+        background: rgba(55, 65, 81, 0.8);
+      }
+      .btn-dash {
+        border-color: #60a5fa;
+        color: #93c5fd;
+      }
+      .btn-dash:hover {
+        color: #111827;
+        background: #60a5fa;
+      }
+      .btn-details {
+        border-color: #facc15;
+        color: #fde047;
+      }
+      .btn-details:hover {
+        color: #111827;
+        background: #facc15;
+      }
+    </style>
   </head>
-  <body
-    class="flex tracking-wider text-center justify-center overflow-x-hidden items-center h-screen"
-    style="background-color: black; color: #f2ebe9"
-  >
-    <video
-      src="../static/"
-      class="absolute bottom-0 md:-bottom-5 xl:bottom-0 w-64 md:w-150 xl:-right-5"
-      autoplay
-      muted
-      loop
-    ></video>
-    <div
-      class="rounded-2xl w-2/3 mx-20 hover:shadow-2xl transform duration-300"
-      style="background-color: transparent"
-    >
-      <div class="m-10 sm:mx-20 lg:mx-40">
-        <h1 class="text-3xl md:text-4xl lg:text-5xl mt-10 font-bold">
+  <body class="app-page px-4 py-8 md:py-12">
+    {% include '_navbar.html' %}
+    <div class="page-shell mx-auto">
+      <div class="dashboard-card">
+        <h1 class="text-2xl md:text-3xl lg:text-4xl mt-6 font-bold">
           FILE<span class="text-blue-600">!</span>SECURE
         </h1>
-        <h2 class="lg:text-lg">
+        <h2 class="text-sm lg:text-base">
           Secure File Storage Using <em>`Hybr!d Cryptography` </em>
         </h2>
-        <br /><br />
-        <h2 class="sm:mt-12 text-center font-semibold text-3xl">`SUCCESS`!</h2>
-        <h3 class="mb-5">
-          You file has been encrypted.<br />
-          <em
-            >Download the key now! and share with the receiver. <br />You will
-            not get the options to download this key again!</em
-          >
-        </h3>
-        <table class="w-full sm:mb-16">
-          <tr class="flex justify-center flex-wrap sm:flex-no-wrap">
-            <td>
-              <a href="/return-key"
-                ><button
-                  class="py-2 px-4 border transform duration-200 hover:text-black hover:bg-gray-100 hover:-translate-y-1"
-                >
-                  Download Key
-                </button></a
-              >
-            </td>
-            <td>
-              <a href="/home"
-                ><button
-                  class="py-2 px-4 border transform duration-200 text-black hover:text-white hover:bg-transparent bg-gray-100 hover:-translate-y-1 sm:ml-10"
-                >
-                  Back to Home
-                </button></a
-              >
-            </td>
-          </tr>
-        </table>
         <br />
-        <div class="flex-col mx-auto mt-5 text-center">
-         
+        <h2 class="text-center font-semibold text-2xl text-green-400">✅ SUCCESS!</h2>
+        <h3 class="mb-4 text-sm">
+          Your file has been encrypted.<br />
+          <em>Download the key now and share with the receiver.</em>
+        </h3>
+        
+        <!-- Performance Metrics -->
+        {% if perf_info %}
+        <div class="info-box border border-green-600" style="background-color: rgba(16, 185, 129, 0.1);">
+          <h4 class="text-green-400 font-semibold">⚡ Performance</h4>
+          <div class="info-grid">
+            <div class="text-gray-400">Encryption Time:</div>
+            <div class="font-semibold">{{ perf_info.encryption_time }}</div>
+            <div class="text-gray-400">Chunks Created:</div>
+            <div class="font-semibold">{{ perf_info.num_chunks }}</div>
+          </div>
+        </div>
+        {% endif %}
+        
+        <!-- ML-Based Encryption Info -->
+        {% if ml_info %}
+        <div class="info-box border border-blue-500" style="background-color: rgba(59, 130, 246, 0.1);">
+          <h4 class="text-blue-400 font-semibold">🤖 ML-Based Encryption</h4>
+          <div class="info-grid">
+            <div class="text-gray-400">Strategy:</div>
+            <div>
+              <span class="tag tag-{{ ml_info.strategy|lower }}">{{ ml_info.strategy }}</span>
+              {% if ml_info.user_override %}
+              <span class="tag tag-override ml-1">OVERRIDE</span>
+              {% endif %}
+              {% if ml_info.force_strong %}
+              <span class="tag tag-high ml-1">FORCED</span>
+              {% endif %}
+            </div>
+            
+            <div class="text-gray-400">Confidence:</div>
+            <div class="font-semibold">{{ ml_info.confidence }}</div>
+            
+            <div class="text-gray-400">Security Level:</div>
+            <div>{{ ml_info.security_level }}</div>
+            
+            <div class="text-gray-400">File Type:</div>
+            <div>{{ ml_info.file_type }}</div>
+            
+            <div class="text-gray-400">File Size:</div>
+            <div>{{ ml_info.size }}</div>
+            
+            <div class="text-gray-400">Entropy:</div>
+            <div>{{ ml_info.entropy }} bits/byte</div>
+          </div>
+        </div>
+        {% endif %}
+        
+        <!-- Security Scan Info -->
+        {% if security_info %}
+        <div class="info-box border border-yellow-500" style="background-color: rgba(245, 158, 11, 0.1);">
+          <h4 class="text-yellow-400 font-semibold">🛡️ Security Scan</h4>
+          <div class="info-grid">
+            <div class="text-gray-400">Risk Level:</div>
+            <div>
+              {% if security_info.risk_level == 'SAFE' %}
+              <span class="tag tag-safe">{{ security_info.risk_level }}</span>
+              {% elif security_info.risk_level == 'LOW_RISK' %}
+              <span class="tag tag-low">{{ security_info.risk_level }}</span>
+              {% elif security_info.risk_level == 'MEDIUM_RISK' %}
+              <span class="tag tag-medium">{{ security_info.risk_level }}</span>
+              {% else %}
+              <span class="tag tag-high">{{ security_info.risk_level }}</span>
+              {% endif %}
+            </div>
+            {% if security_info.findings %}
+            <div class="text-gray-400">Findings:</div>
+            <div class="text-xs">{{ security_info.findings|join(', ') }}</div>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+        
+        <!-- Anomaly Detection Info -->
+        {% if anomaly_info and anomaly_info.detected %}
+        <div class="info-box border border-red-500" style="background-color: rgba(239, 68, 68, 0.1);">
+          <h4 class="text-red-400 font-semibold">⚠️ Anomaly Detected</h4>
+          <div class="info-grid">
+            <div class="text-gray-400">Confidence:</div>
+            <div class="font-semibold">{{ anomaly_info.confidence }}</div>
+            <div class="text-gray-400">Reason:</div>
+            <div class="text-xs">{{ anomaly_info.reason }}</div>
+          </div>
+          <p class="text-xs text-red-300 mt-2">⚡ STRONG encryption was automatically applied</p>
+        </div>
+        {% endif %}
+        
+        <div class="flex justify-center flex-wrap gap-3 mt-6 mb-2">
+          <a href="/return-key" class="btn btn-key">Download Key</a>
+          <a href="/home" class="btn btn-home">Home</a>
+          <a href="/dashboard" class="btn btn-dash">Dashboard</a>
+          {% if upload_id %}
+          <a href="/encryption-details/{{ upload_id }}" class="btn btn-details">View Encryption Details</a>
+          {% endif %}
         </div>
       </div>
     </div>

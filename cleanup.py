@@ -1,5 +1,6 @@
 import os
 import shutil
+import config
 
 def clean_folder(folder_path):
     """Remove all files in a folder but keep the folder"""
@@ -18,16 +19,16 @@ def clean_folder(folder_path):
 
 if __name__ == "__main__":
     folders_to_clean = [
-        'encrypted',
-        'raw_data',
-        'key',
-        'uploads',
-        'files',
-        'restored_file'
+        config.ENCRYPTED_FOLDER,
+        config.RAW_DATA_FOLDER,
+        config.KEY_FOLDER,
+        config.UPLOAD_FOLDER,
+        config.TEMP_FILES_FOLDER,
+        config.RESTORED_FILES_FOLDER
     ]
     
     for folder in folders_to_clean:
         print(f"\nCleaning {folder}/...")
-        clean_folder(folder)
+        clean_folder(str(folder))
     
     print("\n✓ Cleanup complete!")

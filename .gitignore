@@ -16,13 +16,17 @@ ENV/
 .venv
 
 # Sensitive Data & User Files (DO NOT COMMIT)
+data/
 uploads/
 encrypted/
 key/
+keys/
 *.pem
 raw_data/
 files/
+temp_files/
 restored_file/
+restored/
 
 # Environment Variables
 .env

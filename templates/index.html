@@ -4,76 +4,257 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="../static/" type="image" />
+    <!-- <link rel="icon" href="../static/favicon.ico" type="image/x-icon" /> -->
     <link
       rel="stylesheet"
       type="text/css"
       href="../static/styles/tailwind.min.css"
     />
+    <link rel="stylesheet" type="text/css" href="../static/styles/theme.css" />
     <title>Secure File Storage using Hybrid Cryptography</title>
+    <style>
+      body {
+        background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+        min-height: 100vh;
+      }
+      .feature-card {
+        background: rgba(30, 30, 50, 0.6);
+        border: 1px solid rgba(100, 100, 150, 0.3);
+        border-radius: 16px;
+        padding: 24px;
+        transition: all 0.3s ease;
+      }
+      .feature-card:hover {
+        transform: translateY(-5px);
+        border-color: #3b82f6;
+        box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+      }
+      .action-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        border-radius: 16px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+      .action-btn:hover {
+        transform: translateY(-5px);
+      }
+      .btn-upload {
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        border: 2px solid #3b82f6;
+      }
+      .btn-upload:hover {
+        box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+      }
+      .btn-restore {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        border: 2px solid #10b981;
+      }
+      .btn-restore:hover {
+        box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+      }
+      .btn-dashboard {
+        background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+        border: 2px solid #8b5cf6;
+      }
+      .btn-dashboard:hover {
+        box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+      }
+      .btn-about {
+        background: rgba(50, 50, 70, 0.5);
+        border: 2px solid rgba(100, 100, 150, 0.5);
+      }
+      .btn-about:hover {
+        border-color: #f59e0b;
+        box-shadow: 0 10px 30px rgba(245, 158, 11, 0.2);
+      }
+      .icon-circle {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        margin-bottom: 12px;
+      }
+      .glow-text {
+        text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+      }
+      .ml-badge {
+        background: linear-gradient(90deg, #8b5cf6, #3b82f6);
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        font-weight: 600;
+      }
+      .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 0;
+      }
+      .feature-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+      }
+    </style>
   </head>
-  <body
-    class="flex tracking-wider text-center justify-center overflow-x-hidden items-center h-screen"
-    style="background-color: black; color: #f2ebe9"
-  >
-    <video
-      src="../static/"
-      class="absolute bottom-0 md:-bottom-5 xl:bottom-0 w-64 md:w-150 xl:-right-5"
-      autoplay
-      muted
-      loop
-    ></video>
-    <div
-      class="rounded-2xl mx-20 hover:shadow-2xl transform duration-300"
-      style="background-color: transparent"
-    >
-      <a href="about"
-        ><button
-          class="absolute animate-pulse block py-2 px-4 text-sm transform duration-200 hover:-translate-y-1"
-          style="top: 0.5rem; right: 0.5rem"
-        >
-          About
-        </button></a
-      >
-      <div class="m-10 sm:mx-20 lg:mx-40">
-        <h1 class="text-3xl md:text-4xl lg:text-5xl mt-10 font-bold">
-          FILE<span class="text-blue-600">!</span>SECURE
+  <body class="app-page text-white overflow-x-hidden">
+    {% include '_navbar.html' %}
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+      
+      <!-- Header -->
+      <header class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 glow-text">
+          FILE<span class="text-blue-500">!</span>SECURE
         </h1>
-        <h2 class="lg:text-lg">
-          Secure File Storage Using <em>`Hybr!d Cryptography` </em>
-        </h2>
-        <div>
-        <div style = "position:relative; left:28.5%; top:20px;">
-       <br /><br /></div>
-        <h2 class="mt-12 text-center font-semibold text-xl mb-5">
-          Get Started!
-        </h2>
-        <table class="w-full mb-16">
-          <tr class="flex justify-center">
-            <td>
-              <a href="upload"
-                ><button
-                  class="py-2 px-4 border transform duration-200 hover:text-black hover:bg-gray-100 hover:-translate-y-1"
-                >
-                  Upload
-                </button></a
-              >
-            </td>
-            <td>
-              <a href="download"
-                ><button
-                  class="py-2 px-4 border transform duration-200 text-black hover:text-white hover:bg-transparent bg-gray-100 hover:-translate-y-1 ml-10"
-                >
-                  Restore
-                </button></a
-              >
-            </td>
-          </tr>
-        </table>
-        <br />
-        <div class="flex-col text-sm mx-auto text-center">          
+        <p class="text-lg md:text-xl text-gray-300 mb-2">
+          Secure File Storage Using <span class="text-blue-400">Hybrid Cryptography</span>
+        </p>
+        <div class="flex justify-center items-center gap-3 mt-4">
+          <span class="ml-badge">ML-Powered</span>
+          <span class="text-sm text-gray-400">Adaptive Encryption</span>
+        </div>
+      </header>
+      
+      <!-- Main Actions Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+        <a href="/upload" class="action-btn btn-upload">
+          <div class="icon-circle bg-blue-600 bg-opacity-30">
+            <span>📤</span>
+          </div>
+          <span class="font-semibold text-lg">Upload</span>
+          <span class="text-xs text-blue-200 mt-1">Encrypt Files</span>
+        </a>
+        
+        <a href="/download" class="action-btn btn-restore">
+          <div class="icon-circle bg-green-600 bg-opacity-30">
+            <span>📥</span>
+          </div>
+          <span class="font-semibold text-lg">Restore</span>
+          <span class="text-xs text-green-200 mt-1">Decrypt Files</span>
+        </a>
+        
+        <a href="/dashboard" class="action-btn btn-dashboard">
+          <div class="icon-circle bg-purple-600 bg-opacity-30">
+            <span>📊</span>
+          </div>
+          <span class="font-semibold text-lg">Dashboard</span>
+          <span class="text-xs text-purple-200 mt-1">Analytics</span>
+        </a>
+        
+        <a href="/about" class="action-btn btn-about">
+          <div class="icon-circle bg-gray-600 bg-opacity-30">
+            <span>ℹ️</span>
+          </div>
+          <span class="font-semibold text-lg">About</span>
+          <span class="text-xs text-gray-300 mt-1">Learn More</span>
+        </a>
+      </div>
+      
+      <!-- Features Section -->
+      <div class="grid md:grid-cols-3 gap-6 mb-12">
+        <div class="feature-card">
+          <h3 class="text-xl font-semibold mb-4 text-blue-400">🤖 ML-Based Encryption</h3>
+          <div class="space-y-2 text-sm text-gray-300">
+            <div class="feature-item">
+              <div class="feature-icon bg-blue-600 bg-opacity-20">📁</div>
+              <span>Analyzes file type & content</span>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon bg-blue-600 bg-opacity-20">📊</div>
+              <span>Calculates entropy levels</span>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon bg-blue-600 bg-opacity-20">🎯</div>
+              <span>Selects optimal strategy</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="feature-card">
+          <h3 class="text-xl font-semibold mb-4 text-green-400">🔐 Hybrid Cryptography</h3>
+          <div class="space-y-2 text-sm text-gray-300">
+            <div class="feature-item">
+              <div class="feature-icon bg-green-600 bg-opacity-20">🔴</div>
+              <span>STRONG: Multi-algorithm</span>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon bg-green-600 bg-opacity-20">🟡</div>
+              <span>BALANCED: AES-GCM</span>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon bg-green-600 bg-opacity-20">🟢</div>
+              <span>FAST: ChaCha20</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="feature-card">
+          <h3 class="text-xl font-semibold mb-4 text-purple-400">🛡️ Security Features</h3>
+          <div class="space-y-2 text-sm text-gray-300">
+            <div class="feature-item">
+              <div class="feature-icon bg-purple-600 bg-opacity-20">🔍</div>
+              <span>Pre-upload malware scan</span>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon bg-purple-600 bg-opacity-20">⚠️</div>
+              <span>Anomaly detection</span>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon bg-purple-600 bg-opacity-20">📈</div>
+              <span>Real-time metrics</span>
+            </div>
+          </div>
         </div>
       </div>
+      
+      <!-- How It Works -->
+      <div class="feature-card text-center">
+        <h3 class="text-xl font-semibold mb-6 text-yellow-400">⚡ How It Works</h3>
+        <div class="flex flex-wrap justify-center items-center gap-4 text-sm">
+          <div class="flex items-center gap-2">
+            <span class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center font-bold">1</span>
+            <span>Upload File</span>
+          </div>
+          <span class="text-gray-500">→</span>
+          <div class="flex items-center gap-2">
+            <span class="w-8 h-8 rounded-full bg-green-600 flex items-center justify-center font-bold">2</span>
+            <span>Security Scan</span>
+          </div>
+          <span class="text-gray-500">→</span>
+          <div class="flex items-center gap-2">
+            <span class="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center font-bold">3</span>
+            <span>ML Analysis</span>
+          </div>
+          <span class="text-gray-500">→</span>
+          <div class="flex items-center gap-2">
+            <span class="w-8 h-8 rounded-full bg-yellow-600 flex items-center justify-center font-bold">4</span>
+            <span>Encrypt</span>
+          </div>
+          <span class="text-gray-500">→</span>
+          <div class="flex items-center gap-2">
+            <span class="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center font-bold">5</span>
+            <span>Download Key</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Footer -->
+      <footer class="text-center mt-12 text-gray-500 text-sm">
+        <p>FILE!SECURE - Secure File Storage System</p>
+        <p class="text-xs mt-1">Built with Python, Flask & Machine Learning</p>
+      </footer>
+      
     </div>
   </body>
 </html>
